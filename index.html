@@ -5,80 +5,399 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pawfolio - All-In-One Pet App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        :root {
+            --primary: #4e54c8;
+            --primary-light: #8f94fb;
+            --secondary: #ff7e5f;
+            --secondary-light: #feb47b;
+            --text-dark: #333;
+            --text-light: #777;
+            --white: #ffffff;
+            --light-bg: #f9f9f9;
+            --border-radius: 16px;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
         header {
-            background-color: #0077cc;
-            color: white;
-            padding: 15px;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 0 100px;
         }
 
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .animated-bg span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: move 25s linear infinite;
+        }
+
+        .animated-bg span:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            width: 80px;
+            height: 80px;
+            animation-duration: 15s;
+        }
+
+        .animated-bg span:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            width: 40px;
+            height: 40px;
+            animation-duration: 18s;
+            animation-delay: 2s;
+        }
+
+        .animated-bg span:nth-child(3) {
+            top: 40%;
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-duration: 12s;
+            animation-delay: 4s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(300px, 300px) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content Styles */
         main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 3rem 0;
         }
 
-        h1, h2 {
-            color: #0077cc;
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        p {
-            margin-bottom: 15px;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
-        footer {
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
             text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 0.9em;
-            color: #555;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
 
-        a {
-            color: #0077cc;
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            padding: 3rem 0;
+            color: var(--white);
+            border-radius: 100px 0 0 0;
+            margin-top: 3rem;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-title {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .contact-email:hover {
+            background: rgba(255, 255, 255, 0.3);
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
+        /* Footer Styles */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 1.5rem 0;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                border-radius: 50px 0 0 0;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Pawfolio</h1>
+        <div class="animated-bg">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Pawfolio</h1>
+                <p class="tagline">The all-in-one pet management app that helps you track your pet's health, schedule, and more.</p>
+            </div>
+        </div>
     </header>
-    <main>
-        <section>
+
+    <main class="container">
+        <section class="card">
             <h2>About Pawfolio</h2>
-            <p>Pawfolio is the all-in-one pet management app that helps you track your pet’s feeding schedule, health, and more. Stay organized and ensure your furry friends are always taken care of!</p>
+            <p>Pawfolio is the comprehensive pet management solution designed to simplify pet ownership. Our intuitive app helps you track your pet's feeding schedule, health records, medication reminders, and more - all in one place.</p>
+            <p>Whether you have one pet or many, Pawfolio keeps all their important information organized and accessible whenever you need it.</p>
         </section>
 
-        <section>
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🍽️</div>
+                <h3 class="feature-title">Feeding Tracker</h3>
+                <p>Never miss a meal with customizable feeding schedules and reminders for each pet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💊</div>
+                <h3 class="feature-title">Health Records</h3>
+                <p>Store vaccination records, medications, and vet visits in one secure location.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3 class="feature-title">Appointment Reminders</h3>
+                <p>Never miss a vet appointment with our smart notification system.</p>
+            </div>
+        </section>
+
+        <section class="card">
             <h2>Privacy Policy</h2>
             <p>Your privacy is important to us. Pawfolio does not collect or store any personal data that can be associated with your identity. We are committed to maintaining the privacy and security of all user information.</p>
-        </section>
-
-        <section>
-            <h2>Contact</h2>
-            <p>If you have any questions or concerns, feel free to reach out at: <a href="mailto:haashim0515@gmail.com">haashim0515@gmail.com</a></p>
+            <p>All pet data is stored locally on your device, giving you complete control over your information at all times.</p>
         </section>
     </main>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-title">Get in Touch</h2>
+                <p>Have questions or suggestions? We'd love to hear from you!</p>
+                <a href="mailto:haashim0515@gmail.com" class="contact-email">haashim0515@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        &copy; 2025 Pawfolio. All rights reserved.
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Pawfolio</div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Home</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <p class="copyright">&copy; 2025 Pawfolio. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 </body>
 
