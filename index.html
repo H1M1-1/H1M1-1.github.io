@@ -25,13 +25,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.47059;
             color: var(--text-dark);
             background-color: var(--light-bg);
             overflow-x: hidden;
-            scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -39,6 +42,56 @@
             max-width: 1440px;
             margin: 0 auto;
             padding: 0 24px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--text-dark);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
         }
 
         /* Header Styles */
@@ -90,9 +143,12 @@
         }
 
         .section {
-            padding: 120px 0;
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .section:nth-child(even) {
@@ -122,7 +178,7 @@
         /* Features Section */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
@@ -171,10 +227,13 @@
         /* Contact Section */
         .contact-section {
             background: var(--white);
-            padding: 120px 0;
+            padding: 100px 0;
             color: var(--text-dark);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .contact-content {
@@ -299,8 +358,40 @@
             transform: translateY(0);
         }
 
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
             .header-content {
                 padding: 1.5rem 0;
             }
@@ -330,7 +421,22 @@
 </head>
 
 <body>
-    <header>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#home" class="nav-logo">Pawfolio</a>
+                <button class="mobile-nav-toggle">☰</button>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
         <div class="container">
             <div class="header-content">
                 <h1 class="logo">Pawfolio</h1>
@@ -340,7 +446,7 @@
     </header>
 
     <main>
-        <section class="section">
+        <section id="about" class="section">
             <div class="container">
                 <div class="section-content reveal">
                     <h2 class="section-title">About Pawfolio</h2>
@@ -350,56 +456,51 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="features" class="section">
             <div class="container">
-                <div class="features">
-                    <div class="feature-card">
-                        <div class="feature-icon">🍽️</div>
-                        <h3 class="feature-title">Feeding Tracker</h3>
-                        <p>Never miss a meal with customizable feeding schedules and reminders for each pet.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💊</div>
-                        <h3 class="feature-title">Health Records</h3>
-                        <p>Store vaccination records, medications, and vet visits in one secure location.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📅</div>
-                        <h3 class="feature-title">Appointment Reminders</h3>
-                        <p>Never miss a vet appointment with our smart notification system.</p>
+                <div class="section-content reveal">
+                    <h2 class="section-title">Features</h2>
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🍽️</div>
+                            <h3 class="feature-title">Feeding Tracker</h3>
+                            <p>Never miss a meal with customizable feeding schedules and reminders for each pet.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💊</div>
+                            <h3 class="feature-title">Health Records</h3>
+                            <p>Store vaccination records, medications, and vet visits in one secure location.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📅</div>
+                            <h3 class="feature-title">Appointment Reminders</h3>
+                            <p>Never miss a vet appointment with our smart notification system.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
+        <section id="contact" class="contact-section">
             <div class="container">
-                <div class="section-content reveal">
-                    <h2 class="section-title">Privacy Policy</h2>
-                    <p class="section-text">Your privacy is important to us. Pawfolio does not collect or store any personal data that can be associated with your identity. We are committed to maintaining the privacy and security of all user information.</p>
+                <div class="contact-content reveal">
+                    <h2 class="contact-title">Get in Touch</h2>
+                    <p class="section-text">Have questions or suggestions? We'd love to hear from you!</p>
+                    <a href="mailto:haashim0515@gmail.com" class="contact-email">haashim0515@gmail.com</a>
                 </div>
             </div>
         </section>
     </main>
-
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-content reveal">
-                <h2 class="contact-title">Get in Touch</h2>
-                <p class="section-text">Have questions or suggestions? We'd love to hear from you!</p>
-                <a href="mailto:haashim0515@gmail.com" class="contact-email">haashim0515@gmail.com</a>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">Pawfolio</div>
                 <div class="footer-links">
-                    <a href="#" class="footer-link">Home</a>
-                    <a href="#" class="footer-link">Privacy</a>
-                    <a href="#" class="footer-link">Contact</a>
+                    <a href="#home" class="footer-link">Home</a>
+                    <a href="#about" class="footer-link">About</a>
+                    <a href="#features" class="footer-link">Features</a>
+                    <a href="#contact" class="footer-link">Contact</a>
                 </div>
                 <p class="copyright">&copy; 2025 Pawfolio. All rights reserved.</p>
             </div>
@@ -426,6 +527,53 @@
         
         // Trigger once on page load
         revealOnScroll();
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Active link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile navigation toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileNavToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
     </script>
 </body>
 
