@@ -4,22 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawfolio - All-In-One Pet App</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+    <title>Pawfolio - All-In-One Pet Management App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <style>
         :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --accent-2: #FF8B94;
-            --text-dark: #2C3E50;
-            --text-light: #7F8C8D;
-            --white: #ffffff;
-            --light-bg: #F7F9FC;
-            --border-radius: 20px;
-            --transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            --shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.15);
+            --primary: #FF9500;
+            --secondary: #2D3436;
+            --accent-blue: #0A84FF;
+            --accent-red: #FF453A;
+            --accent-purple: #BF5AF2;
+            --accent-green: #30D158;
+            --background: #F2F2F7;
+            --card-bg: #1C1C1E;
+            --text-light: #FFFFFF;
+            --text-secondary: #8E8E93;
+            --border-radius: 16px;
+            --card-radius: 20px;
+            --transition: all 0.3s ease;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -33,10 +35,10 @@
         }
 
         body {
-            font-family: 'Comic Neue', cursive;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--light-bg);
+            color: var(--secondary);
+            background-color: var(--background);
             overflow-x: hidden;
         }
 
@@ -52,10 +54,12 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: var(--shadow);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-content {
@@ -65,12 +69,10 @@
         }
 
         .nav-logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
-            transform: rotate(-5deg);
-            display: inline-block;
         }
 
         .nav-links {
@@ -79,267 +81,347 @@
         }
 
         .nav-link {
-            color: var(--text-dark);
+            color: var(--secondary);
             text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 500;
             transition: var(--transition);
             padding: 0.5rem 1rem;
             border-radius: 30px;
-            background: transparent;
         }
 
         .nav-link:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
+            color: var(--primary);
         }
 
         .nav-link.active {
             background: var(--primary);
-            color: var(--white);
+            color: white;
         }
 
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
             position: relative;
             overflow: hidden;
-            border-radius: 0 0 50px 50px;
         }
 
         .header-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .header-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
         }
 
         .logo {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            transform: rotate(-5deg);
-            text-shadow: 3px 3px 0 var(--accent);
-            animation: bounce 2s infinite;
-        }
-
-        .tagline {
-            font-size: 1.4rem;
-            font-weight: 400;
-            color: var(--white);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
-        }
-
-        /* Main Content Styles */
-        main {
-            padding: 0;
-        }
-
-        .section {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section:nth-child(even) {
-            background: var(--white);
-        }
-
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            transform: rotate(-2deg);
-        }
-
-        .section-text {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .feature-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            text-align: center;
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            box-shadow: var(--shadow);
-            border: 3px solid var(--accent);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            transition: var(--transition);
-            transform: rotate(-5deg);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.2) rotate(5deg);
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--primary);
         }
 
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            padding: 80px 0;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-            border-radius: 50px 50px 0 0;
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
-        .contact-content {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .contact-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            transform: rotate(-2deg);
-        }
-
-        .contact-email {
+        .app-btn {
             display: inline-block;
-            background: var(--accent);
-            color: var(--text-dark);
+            background: var(--primary);
+            color: white;
             padding: 1rem 2rem;
             border-radius: 30px;
             text-decoration: none;
+            font-weight: 600;
             transition: var(--transition);
-            margin-top: 2rem;
-            font-weight: 700;
-            border: 3px solid var(--white);
+            margin-right: 1rem;
         }
 
-        .contact-email:hover {
-            transform: translateY(-5px) rotate(2deg);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            background: var(--white);
+        .app-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 149, 0, 0.2);
+        }
+
+        .app-btn.secondary {
+            background: var(--secondary);
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .feature-section:nth-child(even) {
+            background: white;
+        }
+
+        .feature-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .feature-content.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-image img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             color: var(--primary);
         }
 
-        /* Footer Styles */
-        footer {
-            background: var(--white);
-            color: var(--text-light);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 3px solid var(--accent);
+        .feature-description {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
         }
 
-        .footer-content {
+        /* App Features Grid */
+        .app-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .app-feature-card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .app-feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .app-feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            animation: fadeIn 1s ease-out;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
         }
 
-        .footer-logo {
-            font-size: 2rem;
+        .app-feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        /* Dark Mode Cards Section */
+        .dark-cards-section {
+            background: var(--secondary);
+            padding: 100px 0;
+            color: var(--text-light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            color: var(--text-light);
+        }
+
+        .app-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 25px;
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .pet-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .pet-icon.red {
+            background: var(--accent-red);
+        }
+
+        .pet-icon.blue {
+            background: var(--accent-blue);
+        }
+
+        .pet-icon.purple {
+            background: var(--accent-purple);
+        }
+
+        .pet-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .pet-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .card-content {
+            margin-top: 15px;
+        }
+
+        .feed-time {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feed-indicator {
+            display: flex;
+            align-items: center;
+        }
+
+        .feed-indicator::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            margin-right: 8px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: white;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
             color: var(--primary);
-            transform: rotate(-5deg);
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
 
         .footer-links {
-            display: flex;
-            gap: 2rem;
-            margin: 1rem 0;
+            list-style: none;
         }
 
-        .footer-link {
-            color: var(--text-dark);
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
-            font-size: 1.1rem;
-            font-weight: 700;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
         }
 
-        .footer-link:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
+        .footer-links a:hover {
+            color: var(--primary);
         }
 
         .copyright {
-            margin-top: 2rem;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        /* Animation Keyframes */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-10px) rotate(-5deg); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         /* Mobile Navigation */
@@ -347,12 +429,33 @@
             display: none;
             background: none;
             border: none;
-            font-size: 2rem;
-            color: var(--primary);
+            font-size: 1.5rem;
+            color: var(--secondary);
             cursor: pointer;
         }
 
         /* Responsive Styles */
+        @media (max-width: 992px) {
+            .header-content, .feature-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-content.reverse {
+                flex-direction: column;
+            }
+
+            .feature-image {
+                margin-top: 40px;
+            }
+
+            .app-btn {
+                display: block;
+                margin: 0 auto 1rem;
+                max-width: 200px;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -360,12 +463,12 @@
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background: var(--white);
+                background: white;
                 padding: 1rem;
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
-                box-shadow: var(--shadow);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
 
             .nav-links.active {
@@ -376,34 +479,16 @@
                 display: block;
             }
 
-            header {
-                padding: 100px 0 60px;
-                border-radius: 0 0 30px 30px;
-            }
-
             .logo {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
-            .tagline {
-                font-size: 1.2rem;
+            .feature-title, .section-title, .cta-title {
+                font-size: 2rem;
             }
 
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .features {
+            .app-features, .app-cards {
                 grid-template-columns: 1fr;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .contact-section {
-                border-radius: 30px 30px 0 0;
             }
         }
     </style>
@@ -416,10 +501,10 @@
                 <a href="#home" class="nav-logo">Pawfolio</a>
                 <button class="mobile-nav-toggle">☰</button>
                 <div class="nav-links">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
+                    <a href="#home" class="nav-link active">Home</a>
                     <a href="#features" class="nav-link">Features</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                    <a href="#download" class="nav-link">Download</a>
                 </div>
             </div>
         </div>
@@ -428,55 +513,180 @@
     <header id="home">
         <div class="container">
             <div class="header-content">
-                <h1 class="logo">Pawfolio</h1>
-                <p class="tagline">The all-in-one pet management app that helps you track your pet's health, schedule, and more.</p>
+                <div class="header-text">
+                    <h1 class="logo">Pawfolio</h1>
+                    <p class="tagline">The all-in-one pet management app that helps you track feeding schedules, monitor health metrics, and manage pet supplies - all in one place.</p>
+                    <a href="#download" class="app-btn">Download Now</a>
+                    <a href="#features" class="app-btn secondary">Learn More</a>
+                </div>
+                <div class="header-image">
+                    <img src="https://placehold.co/300x600/1C1C1E/FFFFFF?text=Pawfolio+App" alt="Pawfolio App Dashboard">
+                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section id="about" class="section">
+        <section id="dashboard" class="feature-section">
             <div class="container">
-                <div class="section-content reveal">
-                    <h2 class="section-title">About Pawfolio</h2>
-                    <p class="section-text">Pawfolio is the comprehensive pet management solution designed to simplify pet ownership. Our intuitive app helps you track your pet's feeding schedule, health records, medication reminders, and more - all in one place.</p>
-                    <p class="section-text">Whether you have one pet or many, Pawfolio keeps all their important information organized and accessible whenever you need it.</p>
+                <div class="feature-content">
+                    <div class="feature-text">
+                        <h2 class="feature-title">Dashboard</h2>
+                        <p class="feature-description">Quickly see your pet's feeding schedule at a glance. Track when they were last fed and when their next meal is due. Never miss a feeding time again with our smart notification system.</p>
+                        <p class="feature-description">Organize pets by personal and family groups to keep everything neatly categorized.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://placehold.co/300x600/1C1C1E/FFFFFF?text=Dashboard" alt="Pawfolio Dashboard">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="section">
+        <section id="stock" class="feature-section">
             <div class="container">
-                <div class="section-content reveal">
-                    <h2 class="section-title">Features</h2>
-                    <div class="features">
-                        <div class="feature-card">
-                            <div class="feature-icon">🍽️</div>
-                            <h3 class="feature-title">Feeding Tracker</h3>
-                            <p>Never miss a meal with customizable feeding schedules and reminders for each pet.</p>
+                <div class="feature-content reverse">
+                    <div class="feature-text">
+                        <h2 class="feature-title">Manage Stock</h2>
+                        <p class="feature-description">Keep track of your pet food inventory in real-time. See how many boxes or packets you have left and get estimates on how long your current stock will last.</p>
+                        <p class="feature-description">Receive smart insights about which pets need more food and when you should restock.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://placehold.co/300x600/1C1C1E/FFFFFF?text=Stock+Management" alt="Stock Management">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="health" class="feature-section">
+            <div class="container">
+                <div class="feature-content">
+                    <div class="feature-text">
+                        <h2 class="feature-title">Track Health</h2>
+                        <p class="feature-description">Monitor important health metrics to keep your pets healthy. Track calorie intake, weight, and other vital information to ensure your pet is getting the proper nutrition.</p>
+                        <p class="feature-description">Get personalized recommendations based on your pet's breed, age, and weight.</p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="https://placehold.co/300x600/1C1C1E/FFFFFF?text=Health+Tracking" alt="Health Tracking">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dark-cards-section">
+            <div class="container">
+                <h2 class="section-title">Smart Pet Management</h2>
+                <p class="section-subtitle">Pawfolio makes it easy to manage multiple pets with our intuitive interface and powerful features.</p>
+                
+                <div class="app-cards">
+                    <div class="app-card">
+                        <div class="card-header">
+                            <div class="pet-icon red">🐕</div>
+                            <div>
+                                <h3 class="pet-name">Luna</h3>
+                                <p class="pet-info">Fed 1h 6m ago</p>
+                            </div>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">💊</div>
-                            <h3 class="feature-title">Health Records</h3>
-                            <p>Store vaccination records, medications, and vet visits in one secure location.</p>
+                        <div>
+                            <p>Next feed: <strong>10:40 pm (53m)</strong></p>
                         </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📅</div>
-                            <h3 class="feature-title">Appointment Reminders</h3>
-                            <p>Never miss a vet appointment with our smart notification system.</p>
+                        <div class="card-content">
+                            <div class="feed-time">
+                                <div class="feed-indicator">Half Packet</div>
+                                <div>8:40 pm</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-card">
+                        <div class="card-header">
+                            <div class="pet-icon blue">🐈</div>
+                            <div>
+                                <h3 class="pet-name">Khaleesi</h3>
+                                <p class="pet-info">Fed 1h 56m ago</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Next feed: <strong>11:50 pm (2h 3m)</strong></p>
+                        </div>
+                        <div class="card-content">
+                            <div class="feed-time">
+                                <div class="feed-indicator">Full Packet</div>
+                                <div>7:50 pm</div>
+                            </div>
+                            <div class="feed-time">
+                                <div class="feed-indicator">Half Packet</div>
+                                <div>5:25 pm</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-card">
+                        <div class="card-header">
+                            <div class="pet-icon purple">🐾</div>
+                            <div>
+                                <h3 class="pet-name">Kiko</h3>
+                                <p class="pet-info">Fed 1h 56m ago</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Missing daily calories: <strong>111 kcal</strong></p>
+                            <p>Recommended extra portions: <strong>2 packets</strong></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="features" class="feature-section">
             <div class="container">
-                <div class="contact-content reveal">
-                    <h2 class="contact-title">Get in Touch</h2>
-                    <p class="section-text">Have questions or suggestions? We'd love to hear from you!</p>
-                    <a href="mailto:haashim0515@gmail.com" class="contact-email">haashim0515@gmail.com</a>
+                <h2 class="section-title">Key Features</h2>
+                
+                <div class="app-features">
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">📊</div>
+                        <h3 class="app-feature-title">Feed History</h3>
+                        <p>Track all feeding events with detailed information including time, portion size, and food type.</p>
+                    </div>
+                    
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">👨‍👩‍👧‍👦</div>
+                        <h3 class="app-feature-title">Family Sharing</h3>
+                        <p>Share pet care responsibilities with family members through our family groups feature.</p>
+                    </div>
+                    
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">🔔</div>
+                        <h3 class="app-feature-title">Smart Reminders</h3>
+                        <p>Get notifications for feeding times, low stock alerts, and health check reminders.</p>
+                    </div>
+                    
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">📱</div>
+                        <h3 class="app-feature-title">Pet Profiles</h3>
+                        <p>Create detailed profiles for each pet with health information, feeding preferences, and more.</p>
+                    </div>
+                    
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">💉</div>
+                        <h3 class="app-feature-title">Vaccination Tracking</h3>
+                        <p>Keep track of vaccination schedules and vet appointments in one convenient place.</p>
+                    </div>
+                    
+                    <div class="app-feature-card">
+                        <div class="app-feature-icon">📈</div>
+                        <h3 class="app-feature-title">Health Analytics</h3>
+                        <p>Monitor your pet's health trends over time with our comprehensive analytics.</p>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="download" class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">Download Pawfolio Today</h2>
+                <p class="cta-text">Join thousands of pet owners who are already using Pawfolio to take better care of their furry friends.</p>
+                <a href="#" class="app-btn">Download on App Store</a>
+                <a href="#" class="app-btn secondary">Get it on Google Play</a>
             </div>
         </section>
     </main>
@@ -484,71 +694,54 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">Pawfolio</div>
-                <div class="footer-links">
-                    <a href="#home" class="footer-link">Home</a>
-                    <a href="#about" class="footer-link">About</a>
-                    <a href="#features" class="footer-link">Features</a>
-                    <a href="#contact" class="footer-link">Contact</a>
+                <div class="footer-column">
+                    <h3>Pawfolio</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#download">Download</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
                 </div>
-                <p class="copyright">&copy; 2025 Pawfolio. All rights reserved.</p>
+                
+                <div class="footer-column">
+                    <h3>Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#stock">Stock Management</a></li>
+                        <li><a href="#health">Health Tracking</a></li>
+                        <li><a href="#">Family Sharing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="mailto:haashim0515@gmail.com">Email Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Pawfolio. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Scroll reveal animation
-        window.addEventListener('scroll', revealOnScroll);
-        
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveals[i].getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if (revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        
-        // Trigger once on page load
-        revealOnScroll();
-
-        // Navigation scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Active link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 60) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
         // Mobile navigation toggle
         const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -561,6 +754,28 @@
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+            });
+        });
+
+        // Active link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
             });
         });
     </script>
