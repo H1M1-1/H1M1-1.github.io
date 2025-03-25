@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pawfolio Yearly Pro - Save 37% Today!</title>
-    <!--[if mso]>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unlock Premium Features - Pawfolio</title>
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" type="text/css">
+    <!--<![endif]-->
     <style type="text/css">
-        body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
-    </style>
-    <![endif]-->
-    <style>
+        /* Email-friendly styles */
         body {
             margin: 0;
             padding: 0;
@@ -18,17 +17,31 @@
             color: #2D3436;
             line-height: 1.6;
         }
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 0;
+        }
+        img {
+            border: 0;
+            display: block;
+        }
         .wrapper {
             width: 100%;
             table-layout: fixed;
-            padding: 20px 0 40px;
             background-color: #F2F2F7;
+            padding: 20px 0 40px;
         }
-        .container {
-            width: 600px;
-            margin: 0 auto;
+        .main {
             background-color: #FFFFFF;
-            border-radius: 20px;
+            margin: 0 auto;
+            width: 600px;
+            max-width: 600px;
+            border-spacing: 0;
+            color: #2D3436;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
@@ -38,14 +51,14 @@
             text-align: center;
             padding: 20px;
         }
-        .header h1 {
+        .logo {
             font-size: 36px;
             font-weight: bold;
             color: #FF9500;
             margin: 10px 0;
             text-align: center;
         }
-        .header p {
+        .tagline {
             font-size: 16px;
             font-weight: normal;
             color: #FFFFFF;
@@ -54,222 +67,419 @@
             text-align: center;
         }
         .content {
-            padding: 40px;
+            padding: 30px 20px;
+        }
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF9500;
             text-align: center;
+            margin: 20px 0;
+        }
+        .feature-description {
+            font-size: 16px;
+            text-align: center;
+            max-width: 450px;
+            margin: 0 auto 30px;
         }
         .premium-card {
             background-color: #1C1C1E;
+            color: #FFFFFF;
             border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            color: white;
+            margin: 0 auto;
             position: relative;
+            max-width: 500px;
+        }
+        .premium-card-inner {
+            padding: 25px 20px;
         }
         .premium-badge {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            background-color: #30D158;
-            color: white;
+            background-color: #0A84FF;
+            color: #FFFFFF;
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: -10px;
+        }
+        .premium-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
         .premium-icon {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-image: linear-gradient(to right, #30D158, #0A84FF);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 15px;
-            font-size: 1.3rem;
+            background-image: linear-gradient(to right, #FF9500, #FF453A);
+            text-align: center;
+            line-height: 40px;
+            margin-right: 15px;
+            font-size: 20px;
         }
         .premium-title {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .premium-intro {
+            margin-bottom: 15px;
         }
         .premium-price {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: bold;
             margin: 15px 0;
-            color: white;
         }
-        .premium-price span {
-            font-size: 1rem;
-            font-weight: 400;
+        .premium-price-label {
+            font-size: 14px;
+            font-weight: normal;
             opacity: 0.8;
         }
         .feature-list {
             list-style: none;
-            padding: 0;
-            margin: 20px 0;
-            text-align: left;
+            padding: 15px 0;
+            margin: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .feature-list li {
+        .feature-item {
             margin-bottom: 15px;
             display: flex;
             align-items: flex-start;
         }
-        .feature-list .checkmark {
+        .feature-icon {
             color: #BF5AF2;
             margin-right: 15px;
-            font-size: 1.2rem;
-        }
-        .feature-title {
-            font-weight: 600;
+            font-size: 18px;
+            min-width: 15px;
             display: block;
-            margin-bottom: 3px;
         }
-        .feature-description {
-            font-size: 0.9rem;
+        .feature-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .feature-label {
+            font-weight: bold;
+            display: block;
+        }
+        .feature-sublabel {
+            font-size: 14px;
             opacity: 0.8;
+            display: block;
+            word-wrap: break-word;
         }
-        .button {
+        .cta-button {
             display: inline-block;
-            background-color: white;
-            color: #2D3436;
+            background-color: #FF9500;
+            color: #FFFFFF;
             padding: 15px 30px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: 600;
-            margin: 20px 0;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .white-button {
+            background-color: #FFFFFF;
+            color: #2D3436;
+        }
+        .button-container {
+            text-align: center;
+            padding: 0 10px 20px;
         }
         .testimonial {
-            background-color: #F2F2F7;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+            text-align: center;
+            margin: 40px auto 0;
+            max-width: 480px;
+        }
+        .testimonial-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .testimonial-text {
             font-style: italic;
+            margin: 10px auto;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .download-container {
+            text-align: center;
+            margin-top: 30px;
         }
         .footer {
             background-color: #2D3436;
             color: #8E8E93;
             text-align: center;
             padding: 30px 20px;
-        }
-        .footer a {
-            color: #FF9500;
-            text-decoration: none;
+            font-size: 14px;
         }
         .social-links {
             margin: 20px 0;
+            text-align: center;
         }
-        .social-links a {
+        .social-link {
             color: #8E8E93;
             text-decoration: none;
             margin: 0 10px;
         }
+        .footer-links {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .footer-link {
+            color: #8E8E93;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .renew-info {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .copyright {
+            text-align: center;
+            margin: 0;
+        }
+        .email-note {
+            font-size: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        /* Media query for responsiveness */
         @media screen and (max-width: 600px) {
-            .container {
-                width: 100% !important;
+            .main {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0;
             }
             .premium-card {
-                border-radius: 0;
+                max-width: 100%;
+            }
+            .premium-card-inner {
+                padding: 20px 15px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .feature-icon {
+                margin-right: 10px;
             }
         }
     </style>
 </head>
-<body>
-    <div class="wrapper">
-        <table class="container" cellpadding="0" cellspacing="0" border="0">
+<body style="margin: 0; padding: 0; font-family: 'Poppins', Helvetica, Arial, sans-serif; background-color: #F2F2F7; color: #2D3436; line-height: 1.6;">
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+    </style>
+    <![endif]-->
+    <div style="width: 100%; table-layout: fixed; background-color: #F2F2F7; padding: 20px 0 40px;">
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #FFFFFF; margin: 0 auto; width: 600px; max-width: 600px; border-spacing: 0; color: #2D3436; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); font-family: 'Poppins', Helvetica, Arial, sans-serif;">
             <tr>
-                <td class="header">
-                    <h1 style="font-family: 'Poppins', Helvetica, Arial, sans-serif; color: #FF9500;">Pawfolio</h1>
-                    <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif; color: #FFFFFF;">Upgrade your pet management experience with our premium features</p>
+                <td style="background-color: #2D3436; color: #FFFFFF; text-align: center; padding: 20px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                    <h1 style="font-size: 36px; font-weight: bold; color: #FF9500; margin: 10px 0; text-align: center; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Pawfolio</h1>
+                    <p style="font-size: 16px; font-weight: normal; color: #FFFFFF; max-width: 400px; margin: 0 auto 20px; text-align: center; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Upgrade your pet management experience with our premium features</p>
                 </td>
             </tr>
             <tr>
-                <td class="content">
-                    <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Hey there! We're excited to offer you an exclusive deal on our Yearly Pro subscription. Save 37% while getting all the premium features you need to manage your pets better.</p>
+                <td style="padding: 30px 20px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                    <h2 style="font-size: 28px; font-weight: bold; color: #FF9500; text-align: center; margin: 20px 0; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Unlock Pro Features</h2>
+                    <p style="font-size: 16px; text-align: center; max-width: 450px; margin: 0 auto 30px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                        Take your pet care to the next level with our premium features designed to give you and your pets the best experience.
+                    </p>
                     
-                    <div class="premium-card">
-                        <div class="premium-badge" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">37% CHEAPER</div>
-                        <div class="premium-icon">💎</div>
-                        <h2 class="premium-title" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Yearly Pro</h2>
-                        <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Save big with our yearly subscription</p>
-                        <div class="premium-price" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                            £29.99
-                            <span>/year</span>
-                        </div>
-                        
-                        <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif; font-weight: 600; margin-bottom: 10px;">INCLUDED FEATURES</p>
-                        
-                        <ul class="feature-list">
-                            <li style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                                <span class="checkmark">✓</span>
-                                <div>
-                                    <span class="feature-title">Everything in Free tier</span>
-                                    <span class="feature-description">All basic features plus premium upgrades below.</span>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1C1C1E; color: #FFFFFF; border-radius: 20px; margin: 0 auto; position: relative; max-width: 500px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                        <tr>
+                            <td style="padding: 25px 20px; position: relative; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <!-- POPULAR badge as a separate table for better email client support -->
+                                <table cellpadding="0" cellspacing="0" border="0" style="position: absolute; top: -10px; left: 50%; margin-left: -45px;">
+                                    <tr>
+                                        <td style="background-color: #30D158; color: #FFFFFF; padding: 5px 20px; border-radius: 20px; font-size: 12px; font-weight: bold; text-align: center; display: inline-block; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            37% CHEAPER
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <div style="display: block; margin-top: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                        <tr>
+                                            <td width="40" style="vertical-align: middle;">
+                                                <div style="width: 40px; height: 40px; border-radius: 50%; background-image: linear-gradient(to right, #30D158, #0A84FF); text-align: center; line-height: 40px; font-size: 20px;">💎</div>
+                                            </td>
+                                            <td style="vertical-align: middle; padding-left: 15px;">
+                                                <h3 style="font-size: 24px; font-weight: bold; margin: 0; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Yearly Pro</h3>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
-                            </li>
-                            <li style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                                <span class="checkmark">✓</span>
-                                <div>
-                                    <span class="feature-title">Complete Feeding History</span>
-                                    <span class="feature-description">Track your pet's feedings for up to 14 days.</span>
+                                
+                                <p style="margin-bottom: 15px; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Save big with our yearly subscription</p>
+                                
+                                <div style="font-size: 32px; font-weight: bold; margin: 15px 0; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                    £29.99 <span style="font-size: 14px; font-weight: normal; opacity: 0.8; font-family: 'Poppins', Helvetica, Arial, sans-serif;">/year</span>
                                 </div>
-                            </li>
-                            <li style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                                <span class="checkmark">✓</span>
-                                <div>
-                                    <span class="feature-title">New Family Sharing</span>
-                                    <span class="feature-description">Share your pet's schedule with unlimited family members.</span>
-                                </div>
-                            </li>
-                            <li style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                                <span class="checkmark">✓</span>
-                                <div>
-                                    <span class="feature-title">Add Unlimited Pets</span>
-                                    <span class="feature-description">Manage as many pets as you need.</span>
-                                </div>
-                            </li>
-                            <li style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                                <span class="checkmark">✓</span>
-                                <div>
-                                    <span class="feature-title">Sync Across Devices</span>
-                                    <span class="feature-description">Access your pet's info from any device.</span>
-                                </div>
-                            </li>
-                            <li style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                                <span class="checkmark">✓</span>
-                                <div>
-                                    <span class="feature-title">Ad-Free</span>
-                                    <span class="feature-description">Enjoy an uninterrupted experience.</span>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif; font-size: 0.8rem; margin-bottom: 15px; opacity: 0.7;">Auto-renews for £29.99/year until canceled</p>
-                        
-                        <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="button" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Upgrade Now</a>
-                    </div>
+                                
+                                <p style="margin-bottom: 10px; font-weight: bold; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">INCLUDED FEATURES</p>
+                                
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin: 0; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                    <!-- Feature 1 -->
+                                    <tr>
+                                        <td style="padding-bottom: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td width="20" style="vertical-align: top; color: #BF5AF2; font-size: 18px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">✓</td>
+                                                    <td style="padding-left: 15px; vertical-align: top; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                                        <span style="font-weight: bold; display: block; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Everything in Free tier</span>
+                                                        <span style="font-size: 14px; opacity: 0.8; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">All basic features plus premium upgrades below.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Feature 2 -->
+                                    <tr>
+                                        <td style="padding-bottom: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td width="20" style="vertical-align: top; color: #BF5AF2; font-size: 18px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">✓</td>
+                                                    <td style="padding-left: 15px; vertical-align: top; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                                        <span style="font-weight: bold; display: block; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Complete Feeding History</span>
+                                                        <span style="font-size: 14px; opacity: 0.8; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Track your pet's feedings for up to 14 days.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Feature 3 -->
+                                    <tr>
+                                        <td style="padding-bottom: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td width="20" style="vertical-align: top; color: #BF5AF2; font-size: 18px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">✓</td>
+                                                    <td style="padding-left: 15px; vertical-align: top; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                                        <span style="font-weight: bold; display: block; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">New Family Sharing</span>
+                                                        <span style="font-size: 14px; opacity: 0.8; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Share your pet's schedule with unlimited family members.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Feature 4 -->
+                                    <tr>
+                                        <td style="padding-bottom: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td width="20" style="vertical-align: top; color: #BF5AF2; font-size: 18px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">✓</td>
+                                                    <td style="padding-left: 15px; vertical-align: top; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                                        <span style="font-weight: bold; display: block; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Add Unlimited Pets</span>
+                                                        <span style="font-size: 14px; opacity: 0.8; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Manage as many pets as you need.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Feature 5 -->
+                                    <tr>
+                                        <td style="padding-bottom: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td width="20" style="vertical-align: top; color: #BF5AF2; font-size: 18px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">✓</td>
+                                                    <td style="padding-left: 15px; vertical-align: top; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                                        <span style="font-weight: bold; display: block; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Sync Across Devices</span>
+                                                        <span style="font-size: 14px; opacity: 0.8; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Access your pet's info from any device.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Feature 6 -->
+                                    <tr>
+                                        <td style="padding-bottom: 15px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td width="20" style="vertical-align: top; color: #BF5AF2; font-size: 18px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">✓</td>
+                                                    <td style="padding-left: 15px; vertical-align: top; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                                        <span style="font-weight: bold; display: block; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Ad-Free</span>
+                                                        <span style="font-size: 14px; opacity: 0.8; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Enjoy an uninterrupted experience.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <p style="font-size: 12px; opacity: 0.7; margin-bottom: 15px; text-align: center; color: #FFFFFF; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Auto-renews for £29.99/year until canceled</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; padding: 0 10px 20px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                                    <tr>
+                                        <td style="background-color: #FFFFFF; color: #2D3436; padding: 15px 30px; border-radius: 30px; font-weight: bold; font-size: 16px; text-align: center; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" style="color: #2D3436; text-decoration: none; display: block; font-family: 'Poppins', Helvetica, Arial, sans-serif;" target="_blank">Upgrade Now</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
                     
-                    <div class="testimonial" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                        "The yearly subscription is a no-brainer! I'm saving money while getting all the premium features I need to manage my pets better."
-                    </div>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top: 40px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                        <tr>
+                            <td style="text-align: center; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #2D3436; font-family: 'Poppins', Helvetica, Arial, sans-serif;">What our users are saying:</p>
+                                <p style="font-style: italic; margin: 10px auto; max-width: 480px; color: #2D3436; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                    "The yearly subscription is a no-brainer! I'm saving money while getting all the premium features I need to manage my pets better."
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
                     
-                    <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="button" style="font-family: 'Poppins', Helvetica, Arial, sans-serif; background-color: #FF9500; color: white;">Download Pawfolio Today</a>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top: 30px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                        <tr>
+                            <td style="text-align: center; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                                    <tr>
+                                        <td style="background-color: #FF9500; color: #FFFFFF; padding: 15px 30px; border-radius: 30px; font-weight: bold; font-size: 16px; text-align: center; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                            <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" style="color: #FFFFFF; text-decoration: none; display: block; font-family: 'Poppins', Helvetica, Arial, sans-serif;" target="_blank">Download Pawfolio Today</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
-                <td class="footer">
-                    <div class="social-links">
-                        <a href="#" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Twitter</a>
-                        <a href="#" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Instagram</a>
-                        <a href="#" style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">Facebook</a>
-                    </div>
-                    <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif;">
-                        <a href="#">Privacy Policy</a> • 
-                        <a href="#">Terms of Use</a> • 
-                        <a href="#">Unsubscribe</a>
-                    </p>
-                    <p style="font-family: 'Poppins', Helvetica, Arial, sans-serif; font-size: 0.9rem; margin-top: 20px;">
-                        © 2025 Pawfolio. All rights reserved.
-                    </p>
+                <td style="background-color: #2D3436; color: #8E8E93; text-align: center; padding: 30px 20px; font-size: 14px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <td style="text-align: center; padding-bottom: 20px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <a href="#" style="color: #8E8E93; text-decoration: none; margin: 0 10px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Twitter</a>
+                                <a href="#" style="color: #8E8E93; text-decoration: none; margin: 0 10px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Instagram</a>
+                                <a href="#" style="color: #8E8E93; text-decoration: none; margin: 0 10px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Facebook</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; padding-bottom: 20px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <a href="#" style="color: #8E8E93; text-decoration: none; margin: 0 10px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Privacy Policy</a>
+                                <a href="#" style="color: #8E8E93; text-decoration: none; margin: 0 10px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Terms of Use</a>
+                                <a href="#" style="color: #8E8E93; text-decoration: none; margin: 0 10px; font-family: 'Poppins', Helvetica, Arial, sans-serif;">Unsubscribe</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; margin: 0; font-family: 'Poppins', Helvetica, Arial, sans-serif;">
+                                <p style="margin: 0 0 20px 0; font-family: 'Poppins', Helvetica, Arial, sans-serif;">&copy; 2025 Pawfolio. All rights reserved.</p>
+                                <p style="font-size: 12px; margin: 0; font-family: 'Poppins', Helvetica, Arial, sans-serif;">You're receiving this email because you've signed up for Pawfolio or shown interest in our services.</p>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>
