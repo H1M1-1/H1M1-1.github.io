@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#FF9500">
+    <meta name="theme-color" content="#8B5CF6">
     <title>Pawfolio - All-In-One Pet Management App</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -14,20 +14,25 @@
     <link rel="manifest" href="favicon/site.webmanifest">
     <style>
         :root {
-            --primary: #FF9500;
-            --secondary: #2D3436;
-            --accent-blue: #0A84FF;
-            --accent-red: #FF453A;
-            --accent-purple: #BF5AF2;
-            --accent-green: #30D158;
-            --background: #F2F2F7;
-            --card-bg: #1C1C1E;
-            --text-light: #FFFFFF;
-            --text-secondary: #8E8E93;
-            --border-radius: 16px;
-            --card-radius: 20px;
-            --transition: all 0.3s ease;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --primary-purple: #8B5CF6;
+            --primary-red: #EF4444;
+            --primary-white: #FFFFFF;
+            --accent-gold: #F59E0B;
+            --accent-yellow: #FCD34D;
+            --background-dark: #0F0F23;
+            --background-darker: #0A0A1B;
+            --card-dark: #1A1A2E;
+            --card-darker: #16213E;
+            --text-white: #FFFFFF;
+            --text-gray: #9CA3AF;
+            --text-light-gray: #D1D5DB;
+            --border-purple: rgba(139, 92, 246, 0.2);
+            --border-gold: rgba(245, 158, 11, 0.2);
+            --shadow-purple: 0 10px 40px rgba(139, 92, 246, 0.3);
+            --shadow-gold: 0 10px 40px rgba(245, 158, 11, 0.3);
+            --gradient-purple: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+            --gradient-gold: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
+            --gradient-red: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
         }
 
         * {
@@ -41,15 +46,18 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: var(--secondary);
-            background-color: var(--background);
+            color: var(--text-white);
+            background: var(--background-dark);
             overflow-x: hidden;
+            font-feature-settings: "kern" 1, "liga" 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -60,10 +68,12 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: white;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
         }
 
         .nav-content {
@@ -73,236 +83,212 @@
         }
 
         .nav-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-link {
-            color: var(--secondary);
+            color: var(--text-light-gray);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
         }
 
         .nav-link:hover {
-            color: var(--primary);
+            color: var(--primary-purple);
+            background: rgba(139, 92, 246, 0.1);
         }
 
         .nav-link.active {
-            background: var(--primary);
+            background: var(--gradient-purple);
             color: white;
         }
 
-        /* Header Styles */
-        header {
-            padding: 140px 0 80px;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--background);
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            cursor: pointer;
         }
 
-        .header-content {
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 40px;
+            position: relative;
+            background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom right, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
         }
 
-        .header-text {
-            flex: 1;
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 8rem 0;
         }
 
-        .header-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
         }
 
-        .header-image img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--secondary);
-            margin-bottom: 2rem;
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
             line-height: 1.6;
+            max-width: 500px;
         }
 
-        .app-btn {
-            display: inline-block;
-            background: var(--primary);
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-purple);
             color: white;
             padding: 1rem 2rem;
-            border-radius: 30px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            transition: var(--transition);
-            margin-right: 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-purple);
         }
 
-        .app-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 149, 0, 0.2);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.4);
         }
 
-        .app-btn.secondary {
-            background: var(--secondary);
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light-gray);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-purple);
         }
 
-        /* Feature Sections */
-        .feature-section {
-            padding: 100px 0;
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-purple);
+            border-color: var(--primary-purple);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Card Sections */
+        .section {
+            padding: 6rem 0;
             position: relative;
         }
 
-        .feature-section:nth-child(even) {
-            background: white;
-        }
-
-        .feature-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .feature-content.reverse {
-            flex-direction: row-reverse;
-        }
-
-        .feature-text {
-            flex: 1;
-        }
-
-        .feature-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .feature-image img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            object-fit: contain;
-        }
-
-        .feature-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .feature-description {
-            font-size: 1.1rem;
-            color: var(--secondary);
-            margin-bottom: 2rem;
-        }
-
-        /* App Features Grid */
-        .app-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .app-feature-card {
-            background: white;
-            border-radius: var(--card-radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .app-feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .app-feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .app-feature-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--secondary);
-        }
-
-        /* Dark Mode Cards Section */
-        .dark-cards-section {
-            background: var(--secondary);
-            padding: 100px 0;
-            color: var(--text-light);
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
         }
 
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: var(--primary);
+            margin-bottom: 1rem;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-            color: var(--text-light);
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .app-cards {
+        /* App Cards Grid */
+        .app-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
         }
 
         .app-card {
-            background: var(--card-bg);
-            border-radius: var(--card-radius);
-            padding: 25px;
-            color: var(--text-light);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-purple);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-purple);
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-purple);
+            border-color: var(--primary-purple);
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
 
         .pet-icon {
@@ -312,96 +298,195 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 1rem;
             font-size: 1.5rem;
         }
 
-        .pet-icon.red {
-            background: var(--accent-red);
-        }
+        .pet-icon.red { background: var(--gradient-red); }
+        .pet-icon.purple { background: var(--gradient-purple); }
+        .pet-icon.gold { background: var(--gradient-gold); }
 
-        .pet-icon.blue {
-            background: var(--accent-blue);
-        }
-
-        .pet-icon.purple {
-            background: var(--accent-purple);
-        }
-
-        .pet-name {
-            font-size: 1.3rem;
+        .pet-info h3 {
+            font-size: 1.2rem;
             font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
-        .pet-info {
-            color: var(--text-secondary);
+        .pet-info p {
+            color: var(--text-gray);
             font-size: 0.9rem;
         }
 
-        .card-content {
-            margin-top: 15px;
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
         }
 
-        .feed-time {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .pricing-card {
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid var(--border-purple);
+            transition: all 0.3s ease;
         }
 
-        .feed-indicator {
+        .pricing-card.premium {
+            border-color: var(--primary-purple);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, var(--card-dark) 100%);
+        }
+
+        .pricing-card.premium-plus {
+            border-color: var(--accent-gold);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, var(--card-dark) 100%);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .pricing-badge.popular {
+            background: var(--gradient-purple);
+        }
+
+        .pricing-badge.best-value {
+            background: var(--gradient-gold);
+        }
+
+        .pricing-header {
             display: flex;
             align-items: center;
-        }
-
-        .feed-indicator::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent-blue);
-            margin-right: 8px;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-            background: white;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 700;
             margin-bottom: 1.5rem;
-            color: var(--primary);
         }
 
-        .cta-text {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
+        .pricing-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+
+        .pricing-price .period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .feature-list .check {
+            color: var(--primary-purple);
+            margin-right: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.1rem;
+        }
+
+        .feature-list .cross {
+            color: var(--text-gray);
+            margin-right: 0.75rem;
+            margin-top: 0.1rem;
+        }
+
+        /* Feature Sections */
+        .feature-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+
+        .feature-showcase.reverse {
+            direction: rtl;
+        }
+
+        .feature-showcase.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+
+        .feature-text p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .feature-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-image img {
+            max-width: 280px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
-        footer {
-            background: var(--secondary);
-            color: var(--text-light);
-            padding: 60px 0 30px;
+        .footer {
+            background: var(--background-darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-purple);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
+        .footer-column h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .footer-links {
@@ -409,56 +494,46 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 0.75rem;
         }
 
         .footer-links a {
-            color: var(--text-secondary);
+            color: var(--text-gray);
             text-decoration: none;
-            transition: var(--transition);
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--primary-purple);
         }
 
-        .copyright {
+        .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-purple);
+            color: var(--text-gray);
         }
 
-        /* Mobile Navigation */
-        .mobile-nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--secondary);
-            cursor: pointer;
-        }
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
 
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .header-content, .feature-content {
-                flex-direction: column;
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .feature-showcase {
+                grid-template-columns: 1fr;
+                gap: 3rem;
                 text-align: center;
             }
 
-            .feature-content.reverse {
-                flex-direction: column;
-            }
-
-            .feature-image {
-                margin-top: 40px;
-            }
-
-            .app-btn {
-                display: block;
-                margin: 0 auto 1rem;
-                max-width: 200px;
+            .app-cards-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -469,12 +544,10 @@
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background: white;
+                background: var(--background-darker);
                 padding: 1rem;
                 flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--border-purple);
             }
 
             .nav-links.active {
@@ -485,16 +558,41 @@
                 display: block;
             }
 
-            .logo {
+            .hero-text h1 {
                 font-size: 2.5rem;
             }
 
-            .feature-title, .section-title, .cta-title {
-                font-size: 2rem;
+            .hero-content {
+                padding: 6rem 0;
             }
 
-            .app-features, .app-cards {
+            .pricing-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-gray);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
             }
         }
     </style>
@@ -517,482 +615,351 @@
         </div>
     </nav>
 
-    <header id="home">
+    <section id="home" class="hero">
         <div class="container">
-            <div class="header-content">
-                <div class="header-text">
-                <h1 class="logo">Pawfolio</h1>
-                    <p class="tagline">The all-in-one pet management app that helps you track feeding schedules, monitor health metrics, and manage pet supplies - all in one place.</p>
-                    <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="app-btn" target="_blank">Download Now</a>
-                    <a href="#features" class="app-btn secondary">Learn More</a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Pawfolio</h1>
+                    <p class="subtitle">The all-in-one pet management app that helps you track feeding schedules, monitor health metrics, and manage pet supplies - all in one place.</p>
+                    <div class="hero-buttons">
+                        <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="btn-primary" target="_blank">Download Now</a>
+                        <a href="#features" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="2 copy.png" alt="Pawfolio App Dashboard" class="phone-mockup">
                 </div>
             </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="dark-cards-section">
-            <div class="container">
-                <h2 class="section-title">Smart Pet Management</h2>
-                <p class="section-subtitle">Pawfolio makes it easy to manage multiple pets with our intuitive interface and powerful features.</p>
-                
-                <div class="app-cards">
-                    <div class="app-card">
-                        <div class="card-header">
-                            <div class="pet-icon red">🐕</div>
-                            <div>
-                                <h3 class="pet-name">Luna</h3>
-                                <p class="pet-info">Fed 1h 6m ago</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Next feed: <strong>10:40 pm (53m)</strong></p>
-                        </div>
-                        <div class="card-content">
-                            <div class="feed-time">
-                                <div class="feed-indicator">Half Packet</div>
-                                <div>8:40 pm</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="app-card">
-                        <div class="card-header">
-                            <div class="pet-icon blue">🐈</div>
-                            <div>
-                                <h3 class="pet-name">Khaleesi</h3>
-                                <p class="pet-info">Fed 1h 56m ago</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Next feed: <strong>11:50 pm (2h 3m)</strong></p>
-                        </div>
-                        <div class="card-content">
-                            <div class="feed-time">
-                                <div class="feed-indicator">Full Packet</div>
-                                <div>7:50 pm</div>
-                            </div>
-                            <div class="feed-time">
-                                <div class="feed-indicator">Half Packet</div>
-                                <div>5:25 pm</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="app-card">
-                        <div class="card-header">
-                            <div class="pet-icon purple">🐾</div>
-                            <div>
-                                <h3 class="pet-name">Kiko</h3>
-                                <p class="pet-info">Fed 1h 56m ago</p>
-                            </div>
-                        </div>
-                        <div>
-                            <p>Missing daily calories: <strong>111 kcal</strong></p>
-                            <p>Recommended extra portions: <strong>2 packets</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing" class="feature-section">
-            <div class="container">
-                <h2 class="section-title">Choose Your Plan</h2>
-                <p class="feature-description" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
-                    Get started for free or upgrade to Premium for enhanced features and unlimited access.
-                </p>
-                
-                <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 40px;">
-                    <!-- Free Plan -->
-                    <div style="flex: 1; min-width: 300px; max-width: 500px; background: white; border-radius: var(--card-radius); padding: 30px; box-shadow: var(--shadow);">
-                        <h3 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--secondary);">Free</h3>
-                        <div style="font-size: 2.5rem; font-weight: 700; margin: 15px 0; color: var(--secondary);">
-                            £0
-                            <span style="font-size: 1rem; font-weight: 400; color: var(--text-secondary);">forever</span>
-                        </div>
-                        <p style="margin-bottom: 20px;">Essential features to get started with pet management</p>
-                        
-                        <ul style="list-style: none; margin-bottom: 25px;">
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-green); margin-right: 10px;">✓</span>
-                                <span>Basic feeding schedule tracking</span>
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-green); margin-right: 10px;">✓</span>
-                                <span>Feeding history for current day only</span>
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-green); margin-right: 10px;">✓</span>
-                                <span>Add 1 pet only</span>
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-green); margin-right: 10px;">✓</span>
-                                <span>Basic medication & health tracking</span>
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-red); margin-right: 10px;">×</span>
-                                <span style="color: var(--text-secondary);">No family sharing available</span>
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-red); margin-right: 10px;">×</span>
-                                <span style="color: var(--text-secondary);">Contains advertisements</span>
-                            </li>
-                        </ul>
-                        
-                        <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="app-btn secondary" style="width: 100%; text-align: center; margin: 0;" target="_blank">Download Free</a>
-                    </div>
-                    
-                    <!-- Yearly Plan -->
-                    <div style="flex: 1; min-width: 300px; max-width: 500px; background: var(--card-bg); border-radius: var(--card-radius); padding: 30px; box-shadow: var(--shadow); position: relative; color: white;">
-                        <div style="position: absolute; top: -15px; right: 30px; background: var(--accent-green); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">37% CHEAPER</div>
-                        
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="width: 40px; height: 40px; border-radius: 50%; background-image: linear-gradient(to right, #30D158, #0A84FF); display: flex; justify-content: center; align-items: center; margin-right: 15px;">
-                                <span style="font-size: 1.3rem;">💎</span>
-                            </div>
-                            <h3 style="font-size: 1.8rem; margin-bottom: 0;">Yearly Pro</h3>
-                        </div>
-                        
-                        <p style="margin-bottom: 15px;">Save big with our yearly subscription</p>
-                        
-                        <div style="font-size: 2.5rem; font-weight: 700; margin: 15px 0; color: white;">
-                            £29.99
-                            <span style="font-size: 1rem; font-weight: 400; opacity: 0.8;">/year</span>
-                        </div>
-                        
-                        <p style="margin-bottom: 10px; font-weight: 600; color: var(--text-light);">INCLUDED FEATURES</p>
-                        
-                        <ul style="list-style: none; margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Everything in Free tier</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">All basic features plus premium upgrades below.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Complete Feeding History</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Track your pet's feedings for up to 14 days.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">New Family Sharing</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Share your pet's schedule with unlimited family members.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Add Unlimited Pets</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Manage as many pets as you need.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Sync Across Devices</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Access your pet's info from any device.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Ad-Free</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Enjoy an uninterrupted experience.</span>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <p style="font-size: 0.8rem; margin-bottom: 15px; opacity: 0.7;">Auto-renews for £29.99/year until canceled</p>
-                        
-                        <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="app-btn" style="width: 100%; text-align: center; margin: 0; background: white; color: var(--secondary);" target="_blank">Upgrade Now</a>
-                    </div>
-                    
-                    <!-- Monthly Pro Plan -->
-                    <div style="flex: 1; min-width: 300px; max-width: 500px; background: var(--card-bg); border-radius: var(--card-radius); padding: 30px; box-shadow: var(--shadow); position: relative; color: white;">
-                        <div style="position: absolute; top: -15px; right: 30px; background: var(--accent-blue); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">POPULAR</div>
-                        
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="width: 40px; height: 40px; border-radius: 50%; background-image: linear-gradient(to right, #FF9500, #FF453A); display: flex; justify-content: center; align-items: center; margin-right: 15px;">
-                                <span style="font-size: 1.3rem;">⭐</span>
-                            </div>
-                            <h3 style="font-size: 1.8rem; margin-bottom: 0;">Pro Features</h3>
-                        </div>
-                        
-                        <p style="margin-bottom: 15px;">Upgrade to unlock all premium features</p>
-                        
-                        <div style="font-size: 2.5rem; font-weight: 700; margin: 15px 0; color: white;">
-                            £3.99
-                            <span style="font-size: 1rem; font-weight: 400; opacity: 0.8;">/month</span>
-                        </div>
-                        
-                        <p style="margin-bottom: 10px; font-weight: 600; color: var(--text-light);">INCLUDED FEATURES</p>
-                        
-                        <ul style="list-style: none; margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Everything in Free tier</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">All basic features plus premium upgrades below.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Complete Feeding History</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Track your pet's feedings for up to 14 days.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">New Family Sharing</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Share your pet's schedule with unlimited family members.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Add Unlimited Pets</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Manage as many pets as you need.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Sync Across Devices</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Access your pet's info from any device.</span>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
-                                <span style="color: var(--accent-purple); margin-right: 15px; font-size: 1.2rem;">✓</span>
-                                <div>
-                                    <span style="font-weight: 600; display: block;">Ad-Free</span>
-                                    <span style="font-size: 0.9rem; opacity: 0.8;">Enjoy an uninterrupted experience.</span>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <p style="font-size: 0.8rem; margin-bottom: 15px; opacity: 0.7;">Auto-renews for £3.99/month until canceled</p>
-                        
-                        <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="app-btn" style="width: 100%; text-align: center; margin: 0; background: white; color: var(--secondary);" target="_blank">Upgrade Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="dashboard" class="feature-section">
-            <div class="container">
-                <div class="feature-content">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Dashboard</h2>
-                        <p class="feature-description">Quickly see your pet's feeding schedule at a glance. Track when they were last fed and when their next meal is due. Never miss a feeding time again with our smart notification system.</p>
-                        <p class="feature-description">Organize pets by personal and family groups to keep everything neatly categorized.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="2 copy.png" alt="Pawfolio Dashboard">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="stock" class="feature-section">
-            <div class="container">
-                <div class="feature-content reverse">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Manage Stock</h2>
-                        <p class="feature-description">Keep track of your pet food inventory in real-time. See how many boxes or packets you have left and get estimates on how long your current stock will last.</p>
-                        <p class="feature-description">Receive smart insights about which pets need more food and when you should restock.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="3 copy.png" alt="Stock Management">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="smart-insights" class="feature-section">
-            <div class="container">
-                <div class="feature-content">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Smart Insights</h2>
-                        <p class="feature-description">Get detailed insights into your pets' health and feeding patterns. See missing daily calories and recommended extra portions to ensure your pets are getting the nutrition they need.</p>
-                        <p class="feature-description">Our smart analytics help you make informed decisions about your pets' care.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="4 copy.png" alt="Smart Insights">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="health" class="feature-section">
-            <div class="container">
-                <div class="feature-content reverse">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Track Health</h2>
-                        <p class="feature-description">Monitor important health metrics to keep your pets healthy. Track calorie intake, weight, and other vital information to ensure your pet is getting the proper nutrition.</p>
-                        <p class="feature-description">Get personalized recommendations based on your pet's breed, age, and weight.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="5 copy.png" alt="Health Tracking">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" class="feature-section">
-            <div class="container">
-                <h2 class="section-title">Key Features</h2>
-                
-                <div class="app-features">
-                    <div class="app-feature-card">
-                        <div class="app-feature-icon">📊</div>
-                        <h3 class="app-feature-title">Feed History</h3>
-                        <p>Track all feeding events with detailed information including time, portion size, and food type.</p>
-                    </div>
-                    
-                    <div class="app-feature-card">
-                        <div class="app-feature-icon">👨‍👩‍👧‍👦</div>
-                        <h3 class="app-feature-title">Family Sharing</h3>
-                        <p>Share pet care responsibilities with family members through our family groups feature.</p>
-                    </div>
-                    
-                    <div class="app-feature-card">
-                        <div class="app-feature-icon">🔔</div>
-                        <h3 class="app-feature-title">Smart Reminders</h3>
-                        <p>Get notifications for feeding times, low stock alerts, and health check reminders.</p>
-                    </div>
-                    
-                    <div class="app-feature-card">
-                        <div class="app-feature-icon">📱</div>
-                        <h3 class="app-feature-title">Pet Profiles</h3>
-                        <p>Create detailed profiles for each pet with health information, feeding preferences, and more.</p>
-                    </div>
-                    
-                    <div class="app-feature-card">
-                        <div class="app-feature-icon">💉</div>
-                        <h3 class="app-feature-title">Vaccination Tracking</h3>
-                        <p>Keep track of vaccination schedules and vet appointments in one convenient place.</p>
-                    </div>
-                    
-                    <div class="app-feature-card">
-                        <div class="app-feature-icon">📈</div>
-                        <h3 class="app-feature-title">Health Analytics</h3>
-                        <p>Monitor your pet's health trends over time with our comprehensive analytics.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-content" style="margin-top: 60px;">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Families</h2>
-                        <p class="feature-description">Share your pets' feeds, health information, and more with family members - all synced in real-time. Create or join family groups to collaborate on pet care.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="6 copy.png" alt="Families">
-                    </div>
-                </div>
-                
-                <div class="feature-content reverse" style="margin-top: 60px;">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Feed History</h2>
-                        <p class="feature-description">Track all feeding events with detailed information including time, portion size, and food type. See your pet's feeding history organized by day.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="7 copy.png" alt="Feed History">
-                    </div>
-                </div>
-                
-                <div class="feature-content" style="margin-top: 60px;">
-                    <div class="feature-text">
-                        <h2 class="feature-title">Pet Profiles</h2>
-                        <p class="feature-description">Easily view and manage each pet individually. Create detailed profiles with important information about your pets.</p>
-                    </div>
-                    <div class="feature-image">
-                        <img src="8 copy.png" alt="Pet Profiles">
-                    </div>
-                </div>
-        </div>
-        </section>
-
-        <section id="download" class="cta-section">
-        <div class="container">
-                <h2 class="cta-title">Download Pawfolio Today</h2>
-                <p class="cta-text">Join thousands of pet owners who are already using Pawfolio to take better care of their furry friends.</p>
-                <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="app-btn" target="_blank">Download on App Store</a>
-            </div>
-        </section>
-
-        <section id="privacy" class="feature-section">
-            <div class="container">
-                <h2 class="section-title">Privacy Policy</h2>
-                <div class="feature-content">
-                    <div class="feature-text">
-                        <p class="feature-description">At Pawfolio, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app.</p>
-                        
-                        <h3 style="margin-top: 2rem; color: var(--primary);">Information We Collect</h3>
-                        <p class="feature-description">We collect information that you provide directly to us, including:</p>
-                        <ul style="list-style: none; margin-left: 1rem;">
-                            <li style="margin-bottom: 0.5rem;">• Account information (name, email address)</li>
-                            <li style="margin-bottom: 0.5rem;">• Pet information (name, breed, age, weight)</li>
-                            <li style="margin-bottom: 0.5rem;">• Feeding schedules and health data</li>
-                        </ul>
-
-                        <h3 style="margin-top: 2rem; color: var(--primary);">How We Use Your Information</h3>
-                        <p class="feature-description">We use the information we collect to:</p>
-                        <ul style="list-style: none; margin-left: 1rem;">
-                            <li style="margin-bottom: 0.5rem;">• Provide and maintain our services</li>
-                            <li style="margin-bottom: 0.5rem;">• Send you important updates and notifications</li>
-                            <li style="margin-bottom: 0.5rem;">• Improve our app and user experience</li>
-                        </ul>
-
-                        <h3 style="margin-top: 2rem; color: var(--primary);">Data Security</h3>
-                        <p class="feature-description">We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction.</p>
-
-                        <h3 style="margin-top: 2rem; color: var(--primary);">Contact Us</h3>
-                        <p class="feature-description">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:pawfolio.app@gmail.com" style="color: var(--primary); text-decoration: none;">pawfolio.app@gmail.com</a></p>
-                    </div>
+            <div class="scroll-indicator">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 16l-6-6h12l-6 6z"/>
+                </svg>
             </div>
         </div>
     </section>
 
-        <section id="terms" class="feature-section">
-            <div class="container">
-                <h2 class="section-title">Terms of Use</h2>
-                <div class="feature-content">
-                    <div class="feature-text">
-                        <p class="feature-description">By using Pawfolio, you agree to be bound by the following terms and conditions. Please read them carefully.</p>
-                        
-                        <h3 style="margin-top: 2rem; color: var(--primary);">End User License Agreement</h3>
-                        <p class="feature-description">Pawfolio is licensed, not sold, to you. Your license to use Pawfolio is subject to your prior acceptance of the Licensed Application End User License Agreement ("Standard EULA") published by Apple.</p>
-                        
-                        <p class="feature-description" style="margin-top: 1rem;">For the complete terms and conditions, please review the <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" style="color: var(--primary); text-decoration: none;">Standard EULA</a>.</p>
-                        
-                        <h3 style="margin-top: 2rem; color: var(--primary);">Key Points</h3>
-                        <ul style="list-style: none; margin-left: 1rem;">
-                            <li style="margin-bottom: 0.5rem;">• You may not distribute or make the app available over a network</li>
-                            <li style="margin-bottom: 0.5rem;">• You may not transfer, redistribute, or sublicense the app</li>
-                            <li style="margin-bottom: 0.5rem;">• You may not reverse-engineer or modify the app</li>
-                        </ul>
-
-                        <h3 style="margin-top: 2rem; color: var(--primary);">Contact Us</h3>
-                        <p class="feature-description">If you have any questions about these Terms of Use, please contact us at <a href="mailto:pawfolio.app@gmail.com" style="color: var(--primary); text-decoration: none;">pawfolio.app@gmail.com</a></p>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Smart Pet Management</h2>
+                <p class="section-subtitle">Pawfolio makes it easy to manage multiple pets with our intuitive interface and powerful features.</p>
+            </div>
+            
+            <div class="app-cards-grid">
+                <div class="app-card">
+                    <div class="card-header">
+                        <div class="pet-icon red">🐕</div>
+                        <div class="pet-info">
+                            <h3>Luna</h3>
+                            <p>Fed 1h 6m ago</p>
+                        </div>
+                    </div>
+                    <p><strong>Next feed:</strong> 10:40 pm (53m)</p>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: var(--text-gray);">Half Packet</span>
+                            <span style="color: var(--text-light-gray);">8:40 pm</span>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="app-card">
+                    <div class="card-header">
+                        <div class="pet-icon purple">🐈</div>
+                        <div class="pet-info">
+                            <h3>Khaleesi</h3>
+                            <p>Fed 1h 56m ago</p>
+                        </div>
+                    </div>
+                    <p><strong>Next feed:</strong> 11:50 pm (2h 3m)</p>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="color: var(--text-gray);">Full Packet</span>
+                            <span style="color: var(--text-light-gray);">7:50 pm</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: var(--text-gray);">Half Packet</span>
+                            <span style="color: var(--text-light-gray);">5:25 pm</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-card">
+                    <div class="card-header">
+                        <div class="pet-icon gold">🐾</div>
+                        <div class="pet-info">
+                            <h3>Kiko</h3>
+                            <p>Fed 1h 56m ago</p>
+                        </div>
+                    </div>
+                    <p><strong>Missing daily calories:</strong> 111 kcal</p>
+                    <p><strong>Recommended extra portions:</strong> 2 packets</p>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <p class="section-subtitle">Get started for free or upgrade to Premium for enhanced features and unlimited access.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-icon" style="background: var(--gradient-purple);">
+                            <span>📱</span>
+                        </div>
+                        <div>
+                            <h3 class="pricing-title">Free</h3>
+                            <p style="color: var(--text-gray);">Essential features to get started</p>
+                        </div>
+                    </div>
+                    <div class="pricing-price">
+                        £0<span class="period">forever</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> Basic feeding schedule tracking</li>
+                        <li><span class="check">✓</span> Feeding history for current day only</li>
+                        <li><span class="check">✓</span> Add 1 pet only</li>
+                        <li><span class="check">✓</span> Basic medication & health tracking</li>
+                        <li><span class="cross">×</span> <span style="color: var(--text-gray);">No family sharing available</span></li>
+                        <li><span class="cross">×</span> <span style="color: var(--text-gray);">Contains advertisements</span></li>
+                    </ul>
+                    <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="btn-secondary" style="display: block; text-align: center; margin-top: 2rem;" target="_blank">Download Free</a>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="pricing-card premium">
+                    <div class="pricing-badge popular">POPULAR</div>
+                    <div class="pricing-header">
+                        <div class="pricing-icon" style="background: var(--gradient-purple);">
+                            <span>⭐</span>
+                        </div>
+                        <div>
+                            <h3 class="pricing-title">Premium</h3>
+                            <p style="color: var(--text-gray);">Enhanced features with view-only family sharing</p>
+                        </div>
+                    </div>
+                    <div class="pricing-price">
+                        £3.99<span class="period">/month</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> Everything in Free tier</li>
+                        <li><span class="check">✓</span> Complete Feeding History (14 days)</li>
+                        <li><span class="check">✓</span> Family Sharing with <strong>view-only access</strong></li>
+                        <li><span class="check">✓</span> Add Unlimited Pets</li>
+                        <li><span class="check">✓</span> Sync Across Devices</li>
+                        <li><span class="check">✓</span> Ad-Free Experience</li>
+                    </ul>
+                    <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="btn-primary" style="display: block; text-align: center; margin-top: 2rem;" target="_blank">Upgrade to Premium</a>
+                </div>
+                
+                <!-- Premium+ Plan -->
+                <div class="pricing-card premium-plus">
+                    <div class="pricing-badge best-value">BEST VALUE</div>
+                    <div class="pricing-header">
+                        <div class="pricing-icon" style="background: var(--gradient-gold);">
+                            <span>👑</span>
+                        </div>
+                        <div>
+                            <h3 class="pricing-title">Premium+</h3>
+                            <p style="color: var(--text-gray);">Full family collaboration & advanced features</p>
+                        </div>
+                    </div>
+                    <div class="pricing-price">
+                        £6.99<span class="period">/month</span>
+                    </div>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> Everything in Premium</li>
+                        <li><span class="check">✓</span> <strong>Full Family Collaboration</strong></li>
+                        <li><span class="check">✓</span> Family members can log feeds</li>
+                        <li><span class="check">✓</span> Shared health analytics access</li>
+                        <li><span class="check">✓</span> Multi-Feed for All Members</li>
+                        <li><span class="check">✓</span> Advanced Family Insights</li>
+                        <li><span class="check">✓</span> Priority Support</li>
+                    </ul>
+                    <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="btn-primary" style="display: block; text-align: center; margin-top: 2rem; background: var(--gradient-gold);" target="_blank">Upgrade to Premium+</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="section">
+        <div class="container">
+            <div class="feature-showcase">
+                <div class="feature-text">
+                    <h3>Dashboard</h3>
+                    <p>Quickly see your pet's feeding schedule at a glance. Track when they were last fed and when their next meal is due. Never miss a feeding time again with our smart notification system.</p>
+                    <p>Organize pets by personal and family groups to keep everything neatly categorized.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="2 copy.png" alt="Pawfolio Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stock" class="section">
+        <div class="container">
+            <div class="feature-showcase reverse">
+                <div class="feature-text">
+                    <h3>Manage Stock</h3>
+                    <p>Keep track of your pet food inventory in real-time. See how many boxes or packets you have left and get estimates on how long your current stock will last.</p>
+                    <p>Receive smart insights about which pets need more food and when you should restock.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="3 copy.png" alt="Stock Management">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="smart-insights" class="section">
+        <div class="container">
+            <div class="feature-showcase">
+                <div class="feature-text">
+                    <h3>Smart Insights</h3>
+                    <p>Get detailed insights into your pets' health and feeding patterns. See missing daily calories and recommended extra portions to ensure your pets are getting the nutrition they need.</p>
+                    <p>Our smart analytics help you make informed decisions about your pets' care.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="4 copy.png" alt="Smart Insights">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="health" class="section">
+        <div class="container">
+            <div class="feature-showcase reverse">
+                <div class="feature-text">
+                    <h3>Track Health</h3>
+                    <p>Monitor important health metrics to keep your pets healthy. Track calorie intake, weight, and other vital information to ensure your pet is getting the proper nutrition.</p>
+                    <p>Get personalized recommendations based on your pet's breed, age, and weight.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="5 copy.png" alt="Health Tracking">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Additional Features</h2>
+            </div>
+            
+            <div class="feature-showcase">
+                <div class="feature-text">
+                    <h3>Families</h3>
+                    <p>Share your pets' feeds, health information, and more with family members - all synced in real-time. Create or join family groups to collaborate on pet care.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="6 copy.png" alt="Families">
+                </div>
+            </div>
+            
+            <div class="feature-showcase reverse">
+                <div class="feature-text">
+                    <h3>Feed History</h3>
+                    <p>Track all feeding events with detailed information including time, portion size, and food type. See your pet's feeding history organized by day.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="7 copy.png" alt="Feed History">
+                </div>
+            </div>
+            
+            <div class="feature-showcase">
+                <div class="feature-text">
+                    <h3>Pet Profiles</h3>
+                    <p>Easily view and manage each pet individually. Create detailed profiles with important information about your pets.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="8 copy.png" alt="Pet Profiles">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Download Pawfolio Today</h2>
+                <p class="section-subtitle">Join thousands of pet owners who are already using Pawfolio to take better care of their furry friends.</p>
+                <a href="https://apps.apple.com/gb/app/pawfolio-all-in-one-pet-app/id6743056578?platform=iphone" class="btn-primary" style="display: inline-block; margin-top: 2rem;" target="_blank">Download on App Store</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Privacy Policy</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <p style="color: var(--text-gray); margin-bottom: 2rem;">At Pawfolio, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app.</p>
+                
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">Information We Collect</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1rem;">We collect information that you provide directly to us, including:</p>
+                <ul style="color: var(--text-gray); margin-left: 2rem; margin-bottom: 2rem;">
+                    <li>Account information (name, email address)</li>
+                    <li>Pet information (name, breed, age, weight)</li>
+                    <li>Feeding schedules and health data</li>
+                </ul>
+
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">How We Use Your Information</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1rem;">We use the information we collect to:</p>
+                <ul style="color: var(--text-gray); margin-left: 2rem; margin-bottom: 2rem;">
+                    <li>Provide and maintain our services</li>
+                    <li>Send you important updates and notifications</li>
+                    <li>Improve our app and user experience</li>
+                </ul>
+
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">Data Security</h3>
+                <p style="color: var(--text-gray); margin-bottom: 2rem;">We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction.</p>
+
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">Contact Us</h3>
+                <p style="color: var(--text-gray);">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:pawfolio.app@gmail.com" style="color: var(--primary-purple); text-decoration: none;">pawfolio.app@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="terms" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Terms of Use</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <p style="color: var(--text-gray); margin-bottom: 2rem;">By using Pawfolio, you agree to be bound by the following terms and conditions. Please read them carefully.</p>
+                
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">End User License Agreement</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1rem;">Pawfolio is licensed, not sold, to you. Your license to use Pawfolio is subject to your prior acceptance of the Licensed Application End User License Agreement ("Standard EULA") published by Apple.</p>
+                
+                <p style="color: var(--text-gray); margin-bottom: 2rem;">For the complete terms and conditions, please review the <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" style="color: var(--primary-purple); text-decoration: none;">Standard EULA</a>.</p>
+                
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">Key Points</h3>
+                <ul style="color: var(--text-gray); margin-left: 2rem; margin-bottom: 2rem;">
+                    <li>You may not distribute or make the app available over a network</li>
+                    <li>You may not transfer, redistribute, or sublicense the app</li>
+                    <li>You may not reverse-engineer or modify the app</li>
+                </ul>
+
+                <h3 style="color: var(--text-white); margin: 2rem 0 1rem;">Contact Us</h3>
+                <p style="color: var(--text-gray);">If you have any questions about these Terms of Use, please contact us at <a href="mailto:pawfolio.app@gmail.com" style="color: var(--primary-purple); text-decoration: none;">pawfolio.app@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Pawfolio</h3>
+                    <h4>Pawfolio</h4>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#features">Features</a></li>
@@ -1004,37 +971,37 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Features</h3>
+                    <h4>Features</h4>
                     <ul class="footer-links">
                         <li><a href="#dashboard">Dashboard</a></li>
                         <li><a href="#stock">Stock Management</a></li>
                         <li><a href="#health">Health Tracking</a></li>
-                        <li><a href="#">Family Sharing</a></li>
+                        <li><a href="#features">Family Sharing</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Support</h3>
+                    <h4>Support</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="https://pawfolio.netlify.app/">Help Center</a></li>
+                        <li><a href="mailto:pawfolio.app@gmail.com">Contact Us</a></li>
+                        <li><a href="https://pawfolio.netlify.app/">FAQs</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Connect</h3>
+                    <h4>Connect</h4>
                     <ul class="footer-links">
                         <li><a href="https://x.com/PawfolioApp">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
+                        <li><a href="https://pawfolio.netlify.app/">Instagram</a></li>
+                        <li><a href="https://pawfolio.netlify.app/">Facebook</a></li>
                         <li><a href="mailto:pawfolio.app@gmail.com">Email Us</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="copyright">
+            <div class="footer-bottom">
                 <p>&copy; 2025 Pawfolio. All rights reserved.</p>
             </div>
         </div>
@@ -1058,7 +1025,7 @@
 
         // Active link highlighting
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section, header');
+            const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
             
             let current = '';
@@ -1075,6 +1042,16 @@
                 if (link.getAttribute('href').slice(1) === current) {
                     link.classList.add('active');
                 }
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
