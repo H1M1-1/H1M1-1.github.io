@@ -91,6 +91,15 @@
             background-clip: text;
             text-decoration: none;
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
         }
 
         .nav-links {
@@ -602,7 +611,10 @@
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
-                <a href="#home" class="nav-logo">Pawfolio</a>
+                <a href="#home" class="nav-logo">
+                    <img src="BADF7877-7CE2-40EB-AADF-D158CF8910C8.png" alt="Pawfolio Logo">
+                    Pawfolio
+                </a>
                 <button class="mobile-nav-toggle">☰</button>
                 <div class="nav-links">
                     <a href="#home" class="nav-link active">Home</a>
